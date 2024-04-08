@@ -93,3 +93,12 @@ In this tutorial, we used lazy_static external library to define Vec and DashMap
 - Rust mempunyai variabel static, namun mumpunyai kekurangan: mereka harus mempunyai lifetime `'static` dan bertipe `Sync`, yakni variabel tersebut harus thread-safe (tidak dapat diakses banyak threads sekaligus). Selain itu variabel static dari Rust juga bersifat immutable secara default untuk mencegah data races.
 
 #### Reflection Subscriber-2
+Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you didn’t do so. If yes, explain things that you’ve learned from those other parts of code.
+- File src/lib.rs memiliki kode `pub type Result<T, E=Error> = std::result::Result<T, E>;` yang berfungsi membuat tipe Result dengan default Error type adalah `Error`. Ini merupakan pola dalam Rust untuk menyederhanakan error handling
+- `ErrorResponse` merupakan struct yang merepresentasikan response error dengan status code dan pesannya
+
+Since you have completed the tutorial by now and have tried to test your notification system by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug in more subscribers. How about spawning more than 1 instance of Main app, will it still be easy enough to add to the system?
+- Observer pattern mempermudah saya dalam memasukkan lebih banyak subscriber dengan cara menyimpan list dari observersnya. Sehingga apabila ada subscriber baru yang ingin berlangganan terhadap tipe produk tertentu, tinggal ditambahkan saja ke dalam list. Setelah membuat lebih dari satu instance Main app, maka tiap Main app mempunyai observer patternya snediri sehingga tidak berbagi notification. Jika ingin berbagi notification antar instance maka perlu penyimpanan data bersama yang dapat diakses oleh semua instance.
+
+Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).
+- Tidak, saya tidak membuat tests sendiri ataupun dokumentasi untuk koleksi Postman saya.
